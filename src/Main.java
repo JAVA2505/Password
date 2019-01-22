@@ -24,6 +24,7 @@ public class Main {
             File f = new File("password.txt");
             if (!f.exists()) {
                 f.createNewFile();
+
             }
 
             switch (var) {
