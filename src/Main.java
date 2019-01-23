@@ -2,6 +2,7 @@ import java.awt.*;
 import java.io.*;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
@@ -29,30 +30,71 @@ public class Main {
 
             switch (var) {
                 case "a":
-                    System.out.println("Enter Site adress");
-                    String site = new Scanner(System.in).nextLine();
-                    System.out.println("Enter Login");
-                    String login = new Scanner(System.in).nextLine();
-                    System.out.println("Enter Password");
-                    String password = new Scanner(System.in).nextLine();
+                    System.out.println("Enter Pass method: m or g");
+                    String another = new Scanner(System.in).nextLine();
+                    switch (another) {
+                        case "m":
+                            System.out.println("Enter Site adress");
+                            String site = new Scanner(System.in).nextLine();
+                            System.out.println("Enter Login");
+                            String login = new Scanner(System.in).nextLine();
+                            System.out.println("Enter Password");
+                            String password = new Scanner(System.in).nextLine();
+
+                            BufferedReader br = new BufferedReader(new FileReader(f));
+                            List<String> strings = new LinkedList<>();
+                            String str = null;
+                            while ((str = br.readLine()) != null) {
+                                strings.add(str);
+                            }
+                            strings.add(ANSI_RESET + "site: ".concat("www.") + site + " login: " + ANSI_RED + login + ANSI_RESET + ANSI_RESET + " password: " + ANSI_RED + password + ANSI_RESET);
+                            br.close();
+
+                            PrintWriter pw = new PrintWriter(f);
+                            for (String st : strings) {
+                                pw.println(st);
+                            }
+                            pw.close();
+
+                            break;
+
+                        case "g":
+                            System.out.println("Enter Site adress");
+                            String site1 = new Scanner(System.in).nextLine();
+                            System.out.println("Enter Login");
+                            String login1 = new Scanner(System.in).nextLine();
+                            int min = 100;
+                            int max = 200;
+                            int diff = max - min;
+                            Random password1 = new Random();
+                            int i = password1.nextInt(diff + 1);
+                            i += min;
+
+                            BufferedReader br1 = new BufferedReader(new FileReader(f));
+                            List<String> strings1 = new LinkedList<>();
+                            String str1 = null;
+                            while ((str = br1.readLine()) != null) {
+                                strings1.add(str);
+                            }
+                            strings1.add(ANSI_RESET + "site: ".concat("www.") + site1 + " login: " + ANSI_RED + login1 + ANSI_RESET + ANSI_RESET + " password: " + ANSI_RED + password1 + ANSI_RESET);
+                            br1.close();
+
+                            PrintWriter pw1 = new PrintWriter(f);
+                            for (String st : strings1) {
+                                pw1.println(st);
+                            }
+                            pw1.close();
+
+                            break;
 
 
-                    BufferedReader br = new BufferedReader(new FileReader(f));
-                    List<String> strings = new LinkedList<>();
-                    String str = null;
-                    while ((str = br.readLine()) != null) {
-                            strings.add(str);
-                        }
-                    strings.add(ANSI_RESET+"site: ".concat("www.")+site+" login: "+ANSI_RED+login+ANSI_RESET+ANSI_RESET+" password: "+ANSI_RED+password+ANSI_RESET);
-                    br.close();
-
-                    PrintWriter pw = new PrintWriter(f);
-                    for (String st : strings) {
-                        pw.println(st);
-                        }
-                    pw.close();
-
+                    }
                     break;
+
+
+
+
+
 
                 case "s":
                     BufferedReader bufr = new BufferedReader(new FileReader(f));
